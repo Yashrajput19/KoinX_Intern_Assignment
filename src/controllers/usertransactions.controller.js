@@ -1,7 +1,7 @@
 import { Usertransactions } from "../models/usertransactions.model.js";
 import axios from "axios";
 
-const userTransaction = async (req, res) => {
+const userTransactions = async (req, res) => {
   const address = req.params.useraddress;
 
   try {
@@ -34,21 +34,26 @@ async function storeUserTransactions(address, transactions) {
 async function fetchUserTransactions(address) {
   const apiUrl = "https://api.etherscan.io/api";
 
-  const response = await axios.get(apiUrl, {
-    params: {
-      module: "account",
-      action: "txlist",
-      address: address,
-      startblock: 0,
-      endblock: 99999999,
-      page: 1,
-      offset: 10,
-      sort: "asc",
-      apikey: process.env.API_KEY,
-    },
-  });
+  try {
+    const response = await axios.get(apiUrl, {
+      params: {
+        module: "account",
+        action: "txlist",
+        address: address,
+        startblock: 0,
+        endblock: 99999999,
+        page: 1,
+        offset: 10,
+        sort: "asc",
+        apikey: process.env.API_KEY,
+      },
+    });
 
-  return response.data.result;
+    return response.data.result;
+  } catch (error) {
+    console.error("Error in fetching User Transactions : ", error.message);
+    return null;
+  }
 }
 
-export default userTransaction;
+export default userTransactions;

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const EthereumPriceSchema = new mongoose.Schema(
   {
     PriceInINR: {
-      type: String,
+      type: Number,
       required: true,
       index: true,
     },

@@ -1,9 +1,6 @@
 import express from "express";
 import cors from "cors";
 
-import userTransaction from "./controllers/usertransactions.controller.js";
-import LatestEthereumPrice from "./utils/EthereumPrice.js";
-
 const app = express();
 
 app.use(
@@ -17,10 +14,17 @@ app.use(express.json({ limit: "16kb" }));
 
 // Task 1 :
 
-app.get("/transactions/:useraddress", userTransaction);
+import userTransactions from "./controllers/usertransactions.controller.js";
+app.get("/transactions/:useraddress", userTransactions);
 
 // Task 2 :
 
+import LatestEthereumPrice from "./utils/EthereumPrice.js";
 LatestEthereumPrice();
+
+// Task 3 :
+
+import TotalExpenseAndEtherPrice from "./controllers/expensesAndetherprice.controller.js";
+app.get("/expensesAndetherprice/:useraddress", TotalExpenseAndEtherPrice);
 
 export { app };
