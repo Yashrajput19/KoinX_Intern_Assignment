@@ -32,7 +32,9 @@ async function storeUserTransactions(address, transactions) {
 }
 
 async function fetchUserTransactions(address) {
-  const response = await axios.get("https://api.etherscan.io/api", {
+  const apiUrl = "https://api.etherscan.io/api";
+
+  const response = await axios.get(apiUrl, {
     params: {
       module: "account",
       action: "txlist",
