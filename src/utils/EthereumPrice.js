@@ -2,6 +2,7 @@ import { EthereumPrice } from "../models/ethereumprice.model.js";
 import axios from "axios";
 
 const LatestEthereumPrice = () => {
+  fetchAndStoreEthereumPrice();
   setInterval(fetchAndStoreEthereumPrice, 600000);
 };
 
