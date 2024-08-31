@@ -12,6 +12,10 @@ app.use(
 
 app.use(express.json({ limit: "16kb" }));
 
+app.get("/", (req, res) => {
+  res.send("Hello from Server !!");
+});
+
 // Task 1 :
 
 import userTransactions from "./controllers/usertransactions.controller.js";
